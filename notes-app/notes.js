@@ -33,7 +33,7 @@ const addNote = (title, body) => {
     const duplicateNote = notes.find((note) => note.title === title); //return first match
     // if (duplicateNotes.length === 0) {
  
-    debugger  //debugger which node provides if we use debugger we should add inspect while running the app
+    // debugger  //debugger which node provides if we use debugger we should add inspect while running the app
     
     //for Ex - node inspect app.js add --title='Groceries' --body='rice,wheet'
     //INcase of any wrror in windows replace inspect with --inspect-brk
