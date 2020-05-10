@@ -1,4 +1,4 @@
-const request = require('request');
+// const request = require('request');
 const geocode = require('./utils/geocode')
 const forecast = require('./utils/forecast')
 
@@ -32,18 +32,38 @@ const forecast = require('./utils/forecast')
 // });
 
 
-geocode('Udupi', (error, data) => {
-    console.log('Error',error);
-    console.log('Data',data)
-});
+console.log(process.argv)
 
-forecast(13.6235, 74.6917, (error, data) => {
-    console.log('Error', error)
-    // console.log('Data', data)
-    console.log(data.weather_descriptions+'. It is currently ' + data.current_temperature + ' degrees out. And It feels like ' + data.feelslike_temperature+ ' degrees out!')
+const address = process.argv[2];
+if(!address){
+    console.log('Please provide an address')
+}else{
+    geocode(address, (error, data) => {
+        if(error){
+            return console.log(error)
+        }
+        // console.log('Error',error);
+        // console.log('Data',data)
+        forecast(data.latitude,data.longitude, (error, forecastData) => {
+            if(error){
+                return console.log(error);
+            }
+            // console.log('Error', error)
+            // console.log('Data', data)
+            console.log(data.location)
+            console.log(forecastData.weather_descriptions+'. It is currently ' + forecastData.current_temperature + ' degrees out. And It feels like ' + forecastData.feelslike_temperature+ ' degrees out!')
+        })
+        
+    });
+}
 
-    
-  })
+
+
+// forecast(13.6235, 74.6917, (error, data) => {
+//     console.log('Error', error)
+//     // console.log('Data', data)
+//     console.log(data.weather_descriptions+'. It is currently ' + data.current_temperature + ' degrees out. And It feels like ' + data.feelslike_temperature+ ' degrees out!')
+// })
 
   
 
