@@ -1,4 +1,6 @@
 const request = require('request');
+const geocode = require('./utils/geocode')
+const forecast = require('./utils/forecast')
 
 // const url = 'http://api.weatherstack.com/current?access_key=adb7011c4a245411317a5e01f2e75779&query=13.6235,74.6917&units=m'
 
@@ -16,57 +18,36 @@ const request = require('request');
 //     }
 // });
 
-const geoCodeUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Kundapur.json?access_token=pk.eyJ1Ijoic291bXlhc2lhbiIsImEiOiJjazl3Z3MydGIwOHd0M2txczhoYTAxeG9sIn0.gdtMife8R4ERcQbMnHlYMQ&limit=1';
+// const geoCodeUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Kundapur.json?access_token=pk.eyJ1Ijoic291bXlhc2lhbiIsImEiOiJjazl3Z3MydGIwOHd0M2txczhoYTAxeG9sIn0.gdtMife8R4ERcQbMnHlYMQ&limit=1';
 
-request({ url: geoCodeUrl, json: true }, (error, response) => {
-    // console.log(response.body)
-    if (error) {
-        console.log('Unable to conncet location service')
-    } else if (response.body.features.length === 0) {
-        console.log('Unable to find location. Try another search')
-    } else {
-        console.log('Longitude and Latitude of Kundapur ' + response.body.features[0].center[0], response.body.features[0].center[1])
-    }
+// request({ url: geoCodeUrl, json: true }, (error, response) => {
+//     // console.log(response.body)
+//     if (error) {
+//         console.log('Unable to conncet location service')
+//     } else if (response.body.features.length === 0) {
+//         console.log('Unable to find location. Try another search')
+//     } else {
+//         console.log('Longitude and Latitude of Kundapur ' + response.body.features[0].center[0], response.body.features[0].center[1])
+//     }
+// });
+
+
+geocode('Udupi', (error, data) => {
+    console.log('Error',error);
+    console.log('Data',data)
 });
 
+forecast(13.6235, 74.6917, (error, data) => {
+    console.log('Error', error)
+    // console.log('Data', data)
+    console.log(data.weather_descriptions+'. It is currently ' + data.current_temperature + ' degrees out. And It feels like ' + data.feelslike_temperature+ ' degrees out!')
 
+    
+  })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 
 // console.log('Starting');
-
-
 // setTimeout(() => {
 //     console.log('2 seconds timer')
 // }, 2000)
