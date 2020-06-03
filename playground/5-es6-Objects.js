@@ -27,7 +27,8 @@ const product = {
 // console.log(stock)
 // console.log(rating)
 
-const transaction = (type, { label, stock }) => {
+const transaction = (type, { label, stock = 0 } = {} ) => {
+    //assigning { label, stock } = {} will give the default params when nothing product object is undefined
     console.log(type, label, stock)
 }
 
