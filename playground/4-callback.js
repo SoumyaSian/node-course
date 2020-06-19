@@ -31,16 +31,33 @@
 // 4. Test your work!
 
 
-const add = (x, y, callback) => {
+// const add = (x, y, callback) => {
+//     setTimeout(() => {
+
+//         const sum = x + y;
+//         callback(sum);
+
+//     }, 2000)
+
+// }
+
+// add(1, 4, (sum) => {
+//     console.log(sum) // Should print: 5
+// })
+
+
+
+const doWorkWithCallback = (callback) =>{
     setTimeout(() => {
-
-        const sum = x + y;
-        callback(sum);
-
-    }, 2000)
-
+        // callback('This is an error!!',undefined)
+        callback(undefined,[1,4,7])
+    },2000)
 }
 
-add(1, 4, (sum) => {
-    console.log(sum) // Should print: 5
+
+doWorkWithCallback((error,result) => {
+    if(error){
+        return console.log(error)
+    }
+    console.log(result)
 })
